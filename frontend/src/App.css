@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f4efe6;
+  color: #2c2c2c;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, #b97208 0%, #e8a020 100%);
+  color: #fff;
+  padding: 24px 20px 20px;
+  text-align: center;
+}
+.header h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.header p {
+  font-size: 0.85rem;
+  opacity: 0.82;
+  margin-top: 4px;
+}
+
+/* ── Nav ── */
+.nav {
+  background: #fff;
+  display: flex;
+  border-bottom: 2px solid #e8a020;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.nav button {
+  flex: 1;
+  padding: 13px 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #777;
+  transition: color .18s, background .18s;
+  border-bottom: 3px solid transparent;
+}
+.nav button:hover { background: #fff8ef; color: #b97208; }
+.nav button.active { color: #b97208; border-bottom-color: #b97208; font-weight: 600; }
+
+/* ── Main area ── */
+.main { padding: 20px; }
+
+/* ── Cards ── */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  margin-bottom: 18px;
+}
+
+/* ── Stats ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.stat-value { font-size: 2rem; font-weight: 700; color: #b97208; }
+.stat-label { font-size: 0.72rem; color: #999; margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
+
+/* ── Beer grid ── */
+.beer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+.beer-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  border-left: 4px solid #e8a020;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.beer-name { font-size: 1.05rem; font-weight: 700; color: #222; }
+.beer-brand { font-size: 0.82rem; color: #999; }
+.beer-meta { font-size: 0.78rem; color: #bbb; }
+.stock-badge {
+  display: inline-block;
+  background: #e9f7ec;
+  color: #2a7d3f;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  width: fit-content;
+}
+.stock-badge.low  { background: #fff4e0; color: #c16a00; }
+.stock-badge.empty { background: #fdecea; color: #b91c1c; }
+
+.beer-actions { display: flex; gap: 8px; margin-top: 6px; }
+
+/* ── Buttons ── */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: filter .15s, opacity .15s;
+  line-height: 1.3;
+}
+.btn:hover:not(:disabled) { filter: brightness(0.9); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-primary { background: #e8a020; color: #fff; }
+.btn-success { background: #22c55e; color: #fff; }
+.btn-danger  { background: #ef4444; color: #fff; }
+.btn-ghost   { background: transparent; border: 1px solid #ddd; color: #666; }
+.btn-sm      { padding: 6px 12px; font-size: 0.78rem; }
+
+/* ── Form ── */
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 9px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .18s, box-shadow .18s;
+  background: #fafafa;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #e8a020;
+  box-shadow: 0 0 0 3px rgba(232,160,32,.12);
+  background: #fff;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ── Type selector ── */
+.type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.type-option {
+  padding: 18px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color .18s, background .18s;
+  user-select: none;
+}
+.type-option:hover { border-color: #ccc; }
+.type-option.selected.entrada { border-color: #22c55e; background: #f0fdf4; }
+.type-option.selected.saida   { border-color: #ef4444; background: #fff5f5; }
+.type-icon  { font-size: 1.8rem; margin-bottom: 6px; }
+.type-label { font-weight: 700; font-size: 0.95rem; }
+.type-desc  { font-size: 0.72rem; color: #999; margin-top: 3px; }
+
+/* ── Info box ── */
+.info-box {
+  background: #fff8ef;
+  border: 1px solid #f0c060;
+  border-radius: 9px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #7a5200;
+}
+
+/* ── Alerts ── */
+.alert { padding: 11px 15px; border-radius: 9px; margin-bottom: 16px; font-size: 0.88rem; }
+.alert-success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+.alert-error   { background: #fff5f5; color: #991b1b; border: 1px solid #fecaca; }
+
+/* ── History ── */
+.txn-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+.txn-item:last-child { border-bottom: none; }
+.txn-icon {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+.txn-icon.entrada { background: #f0fdf4; }
+.txn-icon.saida   { background: #fff5f5; }
+.txn-info { flex: 1; min-width: 0; }
+.txn-beer  { font-weight: 700; font-size: 0.93rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.txn-brand { font-size: 0.78rem; color: #aaa; }
+.txn-notes { font-size: 0.78rem; color: #bbb; font-style: italic; margin-top: 2px; }
+.txn-right { text-align: right; flex-shrink: 0; }
+.txn-qty { font-size: 1.1rem; font-weight: 700; }
+.txn-qty.entrada { color: #16a34a; }
+.txn-qty.saida   { color: #dc2626; }
+.txn-date { font-size: 0.72rem; color: #bbb; margin-top: 2px; }
+
+/* ── Empty / loading ── */
+.empty-state { text-align: center; padding: 52px 20px; color: #ccc; }
+.empty-icon  { font-size: 3rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.9rem; line-height: 1.6; }
+.loading { text-align: center; padding: 40px; color: #ccc; font-size: 0.9rem; }
+
+/* ── Success screen ── */
+.success-screen { text-align: center; padding: 50px 20px; }
+.success-icon   { font-size: 3.5rem; margin-bottom: 14px; }
+.success-screen h3 { font-size: 1.2rem; color: #222; }
+.success-screen p  { color: #aaa; margin-top: 8px; font-size: 0.88rem; }
+
+/* ── Delete confirm ── */
+.beer-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .form-row   { grid-template-columns: 1fr; }
+  .stats-bar  { grid-template-columns: 1fr 1fr; }
+  .beer-grid  { grid-template-columns: 1fr; }
+  .stat-value { font-size: 1.5rem; }
+}
