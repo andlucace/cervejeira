@@ -55,8 +55,10 @@ sudo mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled /etc/nginx/con
 sudo rm -f /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default.conf /etc/nginx/conf.d/default.conf
 sudo sed "s/__DOMAIN__/$DOMAIN_NAME/g; s/__PORT__/$PORT/g" "$REPO_DIR/deploy/nginx-cervejeira.conf" > /etc/nginx/sites-available/cervejeira
 sudo ln -sf /etc/nginx/sites-available/cervejeira /etc/nginx/sites-enabled/cervejeira
+sudo systemctl enable nginx || true
+sudo systemctl stop nginx || true
 sudo nginx -t
-sudo systemctl reload nginx || service nginx reload || true
+sudo systemctl start nginx || service nginx start || true
 
 sudo sed "s/__DOMAIN__/$DOMAIN_NAME/g" "$REPO_DIR/deploy/cervejeira-api.service" > /etc/systemd/system/cervejeira-api.service
 sudo systemctl daemon-reload || true
