@@ -13,6 +13,9 @@ sudo mkdir -p /var/www "$APP_DIR" "$BACKEND_DIR" "$FRONTEND_DIR"
 sudo rm -rf "$BACKEND_DIR"/* "$FRONTEND_DIR"/*
 sudo cp -r "$REPO_DIR/backend/." "$BACKEND_DIR/"
 
+sudo apt-get update
+sudo apt-get install -y python3-pip python3-venv nginx nodejs npm
+
 if [ -d "$REPO_DIR/frontend/dist" ]; then
   sudo cp -r "$REPO_DIR/frontend/dist/." "$FRONTEND_DIR/"
 else
@@ -22,9 +25,6 @@ else
   sudo rm -rf "$FRONTEND_DIR"/*
   sudo cp -r "$REPO_DIR/frontend/dist/." "$FRONTEND_DIR/"
 fi
-
-sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv nginx nodejs npm
 
 sudo python3 -m venv "$APP_DIR/venv"
 sudo "$APP_DIR/venv/bin/pip" install --upgrade pip
