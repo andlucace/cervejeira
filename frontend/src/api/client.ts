@@ -3,7 +3,8 @@ import type { Beer, BeerCreate, Transaction, TransactionCreate } from '../types'
 
 type BeerUpdate = Partial<BeerCreate>
 
-const http = axios.create({ baseURL: '/api' })
+const apiBaseUrl = (import.meta.env.VITE_API_URL ?? '/api').replace(/\/$/, '')
+const http = axios.create({ baseURL: apiBaseUrl })
 
 export const beersApi = {
   list: () => http.get<Beer[]>('/beers/').then(r => r.data),
