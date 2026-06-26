@@ -10,7 +10,15 @@ sudo mkdir -p /var/www "$APP_DIR" "$BACKEND_DIR" "$FRONTEND_DIR"
 
 sudo rm -rf "$BACKEND_DIR"/* "$FRONTEND_DIR"/*
 sudo cp -r "$REPO_DIR/backend/." "$BACKEND_DIR/"
-sudo cp -r "$REPO_DIR/frontend/dist/." "$FRONTEND_DIR/"
+
+if [ -d "$REPO_DIR/frontend/dist" ]; then
+  sudo cp -r "$REPO_DIR/frontend/dist/." "$FRONTEND_DIR/"
+elif [ -d "$REPO_DIR/frontend" ]; then
+  sudo find "$REPO_DIR/frontend" -maxdepth 1 -mindepth 1 ! -name 'src' ! -name 'node_modules' ! -name 'package.json' ! -name 'tsconfig.json' ! -name 'tsconfig.node.json' ! -name 'vite.config.ts' -exec cp -r {} "$FRONTEND_DIR/" \;
+else
+  echo "Frontend build not found" >&2
+  exit 1
+fi
 
 sudo apt-get update
 sudo apt-get install -y python3-pip python3-venv nginx
